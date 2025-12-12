@@ -274,23 +274,6 @@ body {
     flex-shrink: 0;
 }
 
-.service-transition-text {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(calc(50% + 20px));
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #10B981;
-    text-align: center;
-    white-space: nowrap;
-    background: #FFFFFF;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    z-index: 3;
-    border: 2px solid rgba(16, 185, 129, 0.2);
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
-}
 
 /* Этап */
 .timeline-stage {
@@ -784,10 +767,6 @@ body {
         bottom: 20px;
     }
     
-    .service-transition-text {
-        bottom: 20px;
-    }
-    
     .gate-divider-line {
         bottom: 20px;
     }
@@ -815,12 +794,6 @@ body {
         width: 20px;
         height: 20px;
         font-size: 0.6rem;
-    }
-    
-    .service-transition-text {
-        transform: translateX(-50%) translateY(calc(50% + 18px));
-        font-size: 0.65rem;
-        padding: 0.2rem 0.6rem;
     }
     
     .timeline-stage.gate {
@@ -912,12 +885,6 @@ body {
         bottom: 15px;
     }
     
-    .service-transition-text {
-        bottom: 15px;
-        font-size: 0.65rem;
-        padding: 0.2rem 0.6rem;
-    }
-    
     .gate-divider-line {
         bottom: 15px;
     }
@@ -945,12 +912,6 @@ body {
         width: 18px;
         height: 18px;
         font-size: 0.55rem;
-    }
-    
-    .service-transition-text {
-        transform: translateX(-50%) translateY(calc(50% + 16px));
-        font-size: 0.6rem;
-        padding: 0.15rem 0.5rem;
     }
     
     .timeline-stage.gate {
