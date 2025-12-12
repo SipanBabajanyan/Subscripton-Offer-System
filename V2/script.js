@@ -32,6 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 gateStage.classList.add('delivered');
             }
             
+            // Активируем точку Gate
+            const gatePoint = document.getElementById('gatePoint');
+            if (gatePoint) {
+                gatePoint.classList.add('active', 'delivered');
+                gatePoint.classList.remove('blocked');
+            }
+            
             // Меняем иконку на галочку
             gateIcon.setAttribute('viewBox', '0 0 24 24');
             gateIcon.setAttribute('fill', 'none');
@@ -39,9 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             `;
             
-            // Обновляем текст кнопки
-            const gateText = deliveryGate.querySelector('.gate-text');
-            const gateSubtitle = deliveryGate.querySelector('.gate-subtitle');
+            // Обновляем текст
+            const gateContent = deliveryGate.querySelector('.gate-divider-content');
+            const gateText = deliveryGate.querySelector('.gate-text-small');
+            const gateSubtitle = deliveryGate.querySelector('.gate-subtitle-small');
             if (gateText) {
                 gateText.textContent = 'Проект сдан ✅';
             }

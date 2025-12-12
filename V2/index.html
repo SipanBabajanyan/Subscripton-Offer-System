@@ -67,18 +67,21 @@
                         </div>
                     </div>
 
-                    <!-- Gate - Проект сдан -->
+                    <!-- Gate - Проект сдан (переходной этап) -->
                     <div class="timeline-stage gate">
-                        <div class="gate-line-vertical"></div>
-                        <div class="gate-button" id="deliveryGate">
-                            <div class="gate-icon">
-                                <svg id="gateIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <path d="M6 10V8a6 6 0 0112 0v2M8 10h8a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6a2 2 0 012-2z"/>
-                                </svg>
+                        <div class="gate-divider" id="deliveryGate">
+                            <div class="gate-divider-line"></div>
+                            <div class="gate-divider-content">
+                                <div class="gate-icon-small">
+                                    <svg id="gateIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M6 10V8a6 6 0 0112 0v2M8 10h8a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6a2 2 0 012-2z"/>
+                                    </svg>
+                                </div>
+                                <div class="gate-text-small">Проект сдан</div>
+                                <div class="gate-subtitle-small">В конце 3 месяца</div>
                             </div>
-                            <div class="gate-text">Проект сдан</div>
-                            <div class="gate-subtitle">В конце 3 месяца</div>
                         </div>
+                        <div class="gate-point" id="gatePoint"></div>
                     </div>
 
                     <!-- Группа Subscription + Maintenance (месяцы 4-12) -->
@@ -127,6 +130,12 @@
                     </div>
 
                     <!-- Maintenance Only (после 12 месяцев) -->
+                    <div class="timeline-stage maintenance-divider">
+                        <div class="maintenance-divider-line"></div>
+                        <div class="maintenance-divider-content">
+                            <div class="maintenance-label">Только Maintenance</div>
+                        </div>
+                    </div>
                     <div class="timeline-stage maintenance">
                         <div class="stage-card blocked" id="cardMaintenance">
                             <div class="stage-number">12+</div>
