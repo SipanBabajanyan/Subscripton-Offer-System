@@ -131,6 +131,47 @@ body {
     z-index: 10;
 }
 
+/* Группа разработки */
+.development-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.development-group-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 540px;
+}
+
+.development-label-line {
+    flex: 1;
+    height: 2px;
+    background: #3B82F6;
+    border-radius: 1px;
+}
+
+.development-label-text {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #3B82F6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 0 0.5rem;
+}
+
+.development-stages {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+}
+
 /* Этап */
 .timeline-stage {
     position: relative;
@@ -236,6 +277,8 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    line-height: 1.2;
+    text-align: center;
 }
 
 /* Точка на линии */
@@ -427,6 +470,15 @@ body {
     .timeline-scroll-container {
         min-width: 2000px;
         padding: 3rem 1.5rem 5rem;
+    }
+
+    .development-group-label {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .development-label-text {
+        font-size: 0.75rem;
     }
 
     .timeline-stage {
