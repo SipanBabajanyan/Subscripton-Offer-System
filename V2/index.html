@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons через CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -59,15 +61,14 @@
 
                     <!-- Gate - Передача проекта -->
                     <div class="timeline-stage gate" data-stage="gate">
-                        <div class="gate-container" id="deliveryGate">
-                            <div class="gate-line-vertical"></div>
+                        <div class="gate-button" id="deliveryGate">
                             <div class="gate-icon">
-                                <svg id="gateIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <path d="M6 10V8a6 6 0 0112 0v2M8 10h8a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6a2 2 0 012-2z"/>
-                                </svg>
+                                <i data-lucide="handshake" id="gateIcon"></i>
                             </div>
+                            <div class="gate-text">Проект сдан</div>
+                            <div class="gate-subtitle">Нажмите для активации</div>
                         </div>
-                        <div class="gate-label">Проект сдан</div>
+                        <div class="gate-line-vertical"></div>
                     </div>
 
                     <!-- Месяц 4 - Subscription + Maintenance -->

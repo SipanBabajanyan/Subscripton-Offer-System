@@ -1,6 +1,10 @@
 // JavaScript для горизонтального скролл timeline
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация Lucide Icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
     const timelineFill = document.getElementById('timelineFill');
     const timelineBlocked = document.getElementById('timelineBlocked');
     const deliveryGate = document.getElementById('deliveryGate');
@@ -22,18 +26,25 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Анимация открытия Gate
             deliveryGate.classList.add('delivered');
+            const gateStage = deliveryGate.closest('.timeline-stage');
+            if (gateStage) {
+                gateStage.classList.add('delivered');
+            }
             
             // Меняем иконку на галочку
-            gateIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" 
-                      d="M5 13l4 4L19 7"/>
-            `;
+            gateIcon.setAttribute('data-lucide', 'check');
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
             
-            // Обновляем подпись Gate
-            const gateLabel = deliveryGate.closest('.timeline-stage').querySelector('.gate-label');
-            if (gateLabel) {
-                gateLabel.style.color = '#10B981';
-                gateLabel.textContent = 'Проект сдан ✅';
+            // Обновляем текст кнопки
+            const gateText = deliveryGate.querySelector('.gate-text');
+            const gateSubtitle = deliveryGate.querySelector('.gate-subtitle');
+            if (gateText) {
+                gateText.textContent = 'Проект сдан ✅';
+            }
+            if (gateSubtitle) {
+                gateSubtitle.textContent = 'Клиент получил проект';
             }
             
             // Активируем все этапы обслуживания (4-12)

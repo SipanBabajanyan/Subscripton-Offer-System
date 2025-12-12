@@ -271,73 +271,120 @@ body {
 
 /* Gate */
 .timeline-stage.gate {
-    min-width: 120px;
+    min-width: 180px;
     margin: 0 1rem;
+    flex-direction: column;
+    align-items: center;
 }
 
-.gate-container {
-    position: relative;
+.gate-button {
+    background: white;
+    border: 3px solid #3B82F6;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
     cursor: pointer;
-    z-index: 15;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 160px;
     margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    z-index: 20;
+    position: relative;
 }
 
-.gate-container:hover {
-    transform: scale(1.1);
+.gate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+    border-color: #2563EB;
 }
 
-.gate-line-vertical {
-    width: 4px;
-    height: 100px;
-    background: #D1D5DB;
-    border-radius: 2px;
-    margin: 0 auto;
-    transition: background 0.5s ease;
+.gate-button:active {
+    transform: translateY(0);
 }
 
-.gate-container.delivered .gate-line-vertical {
+.gate-button.delivered {
     background: #10B981;
+    border-color: #10B981;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.gate-button.delivered:hover {
+    box-shadow: 0 6px 24px rgba(16, 185, 129, 0.4);
+    border-color: #059669;
 }
 
 .gate-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    background: #D1D5DB;
+    width: 56px;
+    height: 56px;
+    background: #3B82F6;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 0 auto 0.75rem;
     transition: all 0.5s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    padding: 8px;
 }
 
-.gate-container.delivered .gate-icon {
-    background: #10B981;
-    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+.gate-button.delivered .gate-icon {
+    background: white;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.gate-icon i {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .gate-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
+    stroke: white;
+    transition: stroke 0.5s ease;
 }
 
-.gate-label {
-    font-size: 0.875rem;
-    font-weight: 600;
+.gate-button.delivered .gate-icon svg {
+    stroke: #10B981;
+}
+
+.gate-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.gate-button.delivered .gate-text {
+    color: white;
+}
+
+.gate-subtitle {
+    font-size: 0.75rem;
     color: #6B7280;
-    margin-top: 0.5rem;
-    text-align: center;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.gate-container.delivered ~ .gate-label,
-.gate-container.delivered + .gate-label {
-    color: #10B981;
+.gate-button.delivered .gate-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.gate-line-vertical {
+    width: 4px;
+    height: 60px;
+    background: #D1D5DB;
+    border-radius: 2px;
+    margin: 0 auto;
+    transition: background 0.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-stage.gate.delivered .gate-line-vertical {
+    background: #10B981;
 }
 
 /* Подсказка скролла */
