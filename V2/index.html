@@ -82,85 +82,39 @@
                     </div>
 
                     <!-- Группа Subscription + Maintenance (месяцы 4-12) -->
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card4">
-                            <div class="stage-number">4</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">После получения</div>
+                    <div class="service-group">
+                        <div class="service-group-label">
+                            <div class="service-label-line"></div>
+                            <div class="service-label-text">Subscription + Maintenance</div>
+                            <div class="service-label-line"></div>
                         </div>
-                        <div class="stage-point blocked" id="point4"></div>
-                    </div>
+                        <div class="service-stages">
+                            <!-- Месяц 4 -->
+                            <div class="timeline-stage service">
+                                <div class="stage-card blocked" id="card4">
+                                    <div class="stage-number">4</div>
+                                    <div class="stage-amount">150 000 AMD</div>
+                                    <div class="stage-label">После получения</div>
+                                </div>
+                                <div class="stage-point blocked" id="point4"></div>
+                            </div>
 
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card5">
-                            <div class="stage-number">5</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point5"></div>
-                    </div>
+                            <!-- Переход между 4 и 12 -->
+                            <div class="service-transition">
+                                <div class="service-transition-line"></div>
+                                <div class="service-transition-text">4-12</div>
+                            </div>
 
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card6">
-                            <div class="stage-number">6</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
+                            <!-- Месяц 12 -->
+                            <div class="timeline-stage service">
+                                <div class="stage-card blocked" id="card12">
+                                    <div class="stage-number">12</div>
+                                    <div class="stage-amount">150 000 AMD</div>
+                                    <div class="stage-label">Subscription + Maintenance</div>
+                                </div>
+                                <div class="stage-point blocked" id="point12"></div>
+                            </div>
                         </div>
-                        <div class="stage-point blocked" id="point6"></div>
-                    </div>
-
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card7">
-                            <div class="stage-number">7</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point7"></div>
-                    </div>
-
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card8">
-                            <div class="stage-number">8</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point8"></div>
-                    </div>
-
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card9">
-                            <div class="stage-number">9</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point9"></div>
-                    </div>
-
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card10">
-                            <div class="stage-number">10</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point10"></div>
-                    </div>
-
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card11">
-                            <div class="stage-number">11</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point11"></div>
-                    </div>
-
-                    <div class="timeline-stage service">
-                        <div class="stage-card blocked" id="card12">
-                            <div class="stage-number">12</div>
-                            <div class="stage-amount">150 000 AMD</div>
-                            <div class="stage-label">Subscription + Maintenance</div>
-                        </div>
-                        <div class="stage-point blocked" id="point12"></div>
                     </div>
 
                     <!-- Maintenance Only (после 12 месяцев) -->
@@ -176,13 +130,6 @@
             </div>
         </div>
 
-        <!-- Подсказка скролла -->
-        <div class="scroll-hint">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-            <span>Прокрутите вправо, чтобы увидеть все этапы</span>
-        </div>
     </div>
 
     <script src="script.js"></script>

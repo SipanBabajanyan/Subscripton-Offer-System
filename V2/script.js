@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let isDelivered = false;
 
     // Анимация начального прогресса (первые 3 месяца)
-    // 3 этапа разработки из 15 общих этапов = 20%
+    // 3 этапа разработки из 5 общих этапов (1-3, Gate, 4, переход, 12, 12+) = ~43%
     setTimeout(() => {
-        if (timelineFill) timelineFill.style.width = '20%';
-        if (timelineBlocked) timelineBlocked.style.width = '80%';
+        if (timelineFill) timelineFill.style.width = '43%';
+        if (timelineBlocked) timelineBlocked.style.width = '57%';
     }, 500);
 
     // Обработка клика на Gate
@@ -49,22 +49,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 gateSubtitle.textContent = 'Клиент получил проект';
             }
             
-            // Активируем все этапы обслуживания (4-12)
+            // Активируем все этапы обслуживания (4 и 12)
             setTimeout(() => {
-                // Активируем месяцы 4-12
-                for (let i = 4; i <= 12; i++) {
-                    const point = document.getElementById(`point${i}`);
-                    const card = document.getElementById(`card${i}`);
-                    
-                    if (point) {
-                        point.style.backgroundColor = '#10B981';
-                        point.classList.add('active');
-                        point.classList.remove('blocked');
-                    }
-                    
-                    if (card) {
-                        card.classList.remove('blocked');
-                    }
+                // Активируем месяц 4
+                const point4 = document.getElementById('point4');
+                const card4 = document.getElementById('card4');
+                
+                if (point4) {
+                    point4.style.backgroundColor = '#10B981';
+                    point4.classList.add('active');
+                    point4.classList.remove('blocked');
+                }
+                
+                if (card4) {
+                    card4.classList.remove('blocked');
+                }
+                
+                // Активируем месяц 12
+                const point12 = document.getElementById('point12');
+                const card12 = document.getElementById('card12');
+                
+                if (point12) {
+                    point12.style.backgroundColor = '#10B981';
+                    point12.classList.add('active');
+                    point12.classList.remove('blocked');
+                }
+                
+                if (card12) {
+                    card12.classList.remove('blocked');
                 }
                 
                 // Активируем Maintenance
@@ -125,14 +137,4 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 
-    // Плавный скролл при загрузке (показываем начало)
-    const scrollWrapper = document.querySelector('.timeline-scroll-wrapper');
-    if (scrollWrapper) {
-        setTimeout(() => {
-            scrollWrapper.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            });
-        }, 100);
-    }
 });
