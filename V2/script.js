@@ -1,22 +1,23 @@
 // JavaScript для горизонтального скролл timeline
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация Lucide Icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
     const timelineFill = document.getElementById('timelineFill');
     const timelineBlocked = document.getElementById('timelineBlocked');
     const deliveryGate = document.getElementById('deliveryGate');
     const gateIcon = document.getElementById('gateIcon');
+    
+    if (!timelineFill || !timelineBlocked || !deliveryGate || !gateIcon) {
+        console.error('Не найдены необходимые элементы DOM');
+        return;
+    }
     
     let isDelivered = false;
 
     // Анимация начального прогресса (первые 3 месяца)
     // 3 этапа разработки из 15 общих этапов = 20%
     setTimeout(() => {
-        timelineFill.style.width = '20%';
-        timelineBlocked.style.width = '80%';
+        if (timelineFill) timelineFill.style.width = '20%';
+        if (timelineBlocked) timelineBlocked.style.width = '80%';
     }, 500);
 
     // Обработка клика на Gate
@@ -32,10 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Меняем иконку на галочку
-            gateIcon.setAttribute('data-lucide', 'check');
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            gateIcon.setAttribute('viewBox', '0 0 24 24');
+            gateIcon.setAttribute('fill', 'none');
+            gateIcon.innerHTML = `
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            `;
             
             // Обновляем текст кнопки
             const gateText = deliveryGate.querySelector('.gate-text');
@@ -80,9 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // Анимация прогресса после Gate
-                timelineFill.classList.add('delivered');
-                timelineFill.style.width = '100%';
-                timelineBlocked.classList.add('hidden');
+                if (timelineFill) {
+                    timelineFill.classList.add('delivered');
+                    timelineFill.style.width = '100%';
+                }
+                if (timelineBlocked) {
+                    timelineBlocked.classList.add('hidden');
+                }
                 
                 // Ripple эффект
                 const ripple = document.createElement('div');
@@ -105,31 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }
     });
-
-    // Изначально блокируем этапы обслуживания
-    for (let i = 4; i <= 12; i++) {
-        const point = document.getElementById(`point${i}`);
-        const card = document.getElementById(`card${i}`);
-        
-        if (point) {
-            point.classList.add('blocked');
-        }
-        
-        if (card) {
-            card.classList.add('blocked');
-        }
-    }
-    
-    const maintenancePoint = document.getElementById('pointMaintenance');
-    const maintenanceCard = document.getElementById('cardMaintenance');
-    
-    if (maintenancePoint) {
-        maintenancePoint.classList.add('blocked');
-    }
-    
-    if (maintenanceCard) {
-        maintenanceCard.classList.add('blocked');
-    }
 
     // Добавляем CSS для ripple анимации
     const style = document.createElement('style');

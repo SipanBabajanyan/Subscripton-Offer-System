@@ -7,8 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons через CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,164 +25,158 @@
                     <div class="timeline-line-blocked" id="timelineBlocked"></div>
                 </div>
 
-                <!-- Все этапы в одной линии -->
+                <!-- Контейнер этапов -->
                 <div class="timeline-stages">
-                    <!-- Группа разработки (первые 3 месяца) -->
+                    <!-- Группа разработки (месяцы 1-3) -->
                     <div class="development-group">
                         <div class="development-group-label">
                             <div class="development-label-line"></div>
-                            <span class="development-label-text">3 месяца разработки</span>
+                            <div class="development-label-text">Этап разработки</div>
                             <div class="development-label-line"></div>
                         </div>
                         <div class="development-stages">
-                            <!-- Месяц 1 - Начало работы -->
-                            <div class="timeline-stage development" data-month="1">
+                            <!-- Месяц 1 -->
+                            <div class="timeline-stage development">
                                 <div class="stage-card">
                                     <div class="stage-number">1</div>
-                                    <div class="stage-amount">100 000</div>
-                                    <div class="stage-label">В день начала работы</div>
+                                    <div class="stage-amount">100 000 AMD</div>
+                                    <div class="stage-label">В начале работы</div>
                                 </div>
                                 <div class="stage-point active" id="point1"></div>
                             </div>
 
-                            <!-- Месяц 2 - Разработка -->
-                            <div class="timeline-stage development" data-month="2">
+                            <!-- Месяц 2 -->
+                            <div class="timeline-stage development">
                                 <div class="stage-card">
                                     <div class="stage-number">2</div>
-                                    <div class="stage-amount">100 000</div>
-                                    <div class="stage-label">Разработка</div>
+                                    <div class="stage-amount">100 000 AMD</div>
+                                    <div class="stage-label">Через 1 месяц</div>
                                 </div>
                                 <div class="stage-point active" id="point2"></div>
                             </div>
 
-                            <!-- Месяц 3 - Разработка -->
-                            <div class="timeline-stage development" data-month="3">
+                            <!-- Месяц 3 -->
+                            <div class="timeline-stage development">
                                 <div class="stage-card">
                                     <div class="stage-number">3</div>
-                                    <div class="stage-amount">100 000</div>
-                                    <div class="stage-label">Разработка</div>
+                                    <div class="stage-amount">100 000 AMD</div>
+                                    <div class="stage-label">Через 1 месяц</div>
                                 </div>
                                 <div class="stage-point active" id="point3"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Gate - Передача проекта -->
-                    <div class="timeline-stage gate" data-stage="gate">
+                    <!-- Gate - Проект сдан -->
+                    <div class="timeline-stage gate">
+                        <div class="gate-line-vertical"></div>
                         <div class="gate-button" id="deliveryGate">
                             <div class="gate-icon">
-                                <i data-lucide="handshake" id="gateIcon"></i>
+                                <svg id="gateIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M6 10V8a6 6 0 0112 0v2M8 10h8a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6a2 2 0 012-2z"/>
+                                </svg>
                             </div>
                             <div class="gate-text">Проект сдан</div>
-                            <div class="gate-subtitle">Нажмите для активации</div>
+                            <div class="gate-subtitle">В конце 3 месяца</div>
                         </div>
-                        <div class="gate-line-vertical"></div>
                     </div>
 
-                    <!-- Месяц 4 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="4">
-                        <div class="stage-card" id="card4">
+                    <!-- Группа Subscription + Maintenance (месяцы 4-12) -->
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card4">
                             <div class="stage-number">4</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">После получения</div>
                         </div>
-                        <div class="stage-point" id="point4"></div>
+                        <div class="stage-point blocked" id="point4"></div>
                     </div>
 
-                    <!-- Месяц 5 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="5">
-                        <div class="stage-card" id="card5">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card5">
                             <div class="stage-number">5</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point5"></div>
+                        <div class="stage-point blocked" id="point5"></div>
                     </div>
 
-                    <!-- Месяц 6 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="6">
-                        <div class="stage-card" id="card6">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card6">
                             <div class="stage-number">6</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point6"></div>
+                        <div class="stage-point blocked" id="point6"></div>
                     </div>
 
-                    <!-- Месяц 7 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="7">
-                        <div class="stage-card" id="card7">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card7">
                             <div class="stage-number">7</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point7"></div>
+                        <div class="stage-point blocked" id="point7"></div>
                     </div>
 
-                    <!-- Месяц 8 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="8">
-                        <div class="stage-card" id="card8">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card8">
                             <div class="stage-number">8</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point8"></div>
+                        <div class="stage-point blocked" id="point8"></div>
                     </div>
 
-                    <!-- Месяц 9 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="9">
-                        <div class="stage-card" id="card9">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card9">
                             <div class="stage-number">9</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point9"></div>
+                        <div class="stage-point blocked" id="point9"></div>
                     </div>
 
-                    <!-- Месяц 10 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="10">
-                        <div class="stage-card" id="card10">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card10">
                             <div class="stage-number">10</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point10"></div>
+                        <div class="stage-point blocked" id="point10"></div>
                     </div>
 
-                    <!-- Месяц 11 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="11">
-                        <div class="stage-card" id="card11">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card11">
                             <div class="stage-number">11</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point11"></div>
+                        <div class="stage-point blocked" id="point11"></div>
                     </div>
 
-                    <!-- Месяц 12 - Subscription + Maintenance -->
-                    <div class="timeline-stage service" data-month="12">
-                        <div class="stage-card" id="card12">
+                    <div class="timeline-stage service">
+                        <div class="stage-card blocked" id="card12">
                             <div class="stage-number">12</div>
-                            <div class="stage-amount">150 000</div>
-                            <div class="stage-label">Sub + Maint</div>
+                            <div class="stage-amount">150 000 AMD</div>
+                            <div class="stage-label">Subscription + Maintenance</div>
                         </div>
-                        <div class="stage-point" id="point12"></div>
+                        <div class="stage-point blocked" id="point12"></div>
                     </div>
 
-                    <!-- После 12 месяцев - Только Maintenance -->
-                    <div class="timeline-stage maintenance" data-stage="maintenance">
-                        <div class="stage-card" id="cardMaintenance">
+                    <!-- Maintenance Only (после 12 месяцев) -->
+                    <div class="timeline-stage maintenance">
+                        <div class="stage-card blocked" id="cardMaintenance">
                             <div class="stage-number">12+</div>
-                            <div class="stage-amount">50 000</div>
-                            <div class="stage-label">Maintenance</div>
+                            <div class="stage-amount">50 000 AMD</div>
+                            <div class="stage-label">Только Maintenance</div>
                         </div>
-                        <div class="stage-point" id="pointMaintenance"></div>
+                        <div class="stage-point blocked" id="pointMaintenance"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Инструкция по скроллу -->
+        <!-- Подсказка скролла -->
         <div class="scroll-hint">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
