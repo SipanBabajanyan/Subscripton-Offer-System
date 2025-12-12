@@ -1,0 +1,561 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #FAFAFA;
+    color: #111827;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 4rem 1.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.header h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.header p {
+    font-size: 1.125rem;
+    color: #6B7280;
+    font-weight: 400;
+}
+
+/* Timeline */
+.timeline-wrapper {
+    margin-bottom: 4rem;
+}
+
+.timeline-container {
+    position: relative;
+    padding: 6rem 3rem 8rem;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Линия прогресса */
+.progress-line {
+    position: absolute;
+    top: 180px;
+    left: 80px;
+    right: 80px;
+    height: 3px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #3B82F6;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+    z-index: 2;
+}
+
+.progress-fill.delivered {
+    background: linear-gradient(to right, #3B82F6, #10B981, #8B5CF6);
+}
+
+.progress-blocked {
+    position: absolute;
+    left: 60%;
+    top: 0;
+    height: 100%;
+    background: #D1D5DB;
+    border-radius: 2px;
+    width: 0%;
+    opacity: 0.5;
+    transition: width 0.5s ease;
+}
+
+.progress-blocked.hidden {
+    display: none;
+}
+
+/* Этапы */
+.stages {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+    gap: 1rem;
+}
+
+.stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Карточки оплат */
+.payment-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem 1.25rem;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.payment-card.development {
+    border-color: #DBEAFE;
+    background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
+}
+
+.payment-card.subscription {
+    border-color: #D1FAE5;
+    background: linear-gradient(135deg, #ECFDF5 0%, #FFFFFF 100%);
+}
+
+.payment-card.maintenance {
+    border-color: #F3E8FF;
+    background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
+}
+
+.payment-card.blocked {
+    border-color: #E5E7EB;
+    background: #F9FAFB;
+    opacity: 0.6;
+}
+
+.payment-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.payment-amount {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3B82F6;
+    margin-bottom: 0.5rem;
+}
+
+.payment-card.subscription .payment-amount {
+    color: #10B981;
+}
+
+.payment-card.maintenance .payment-amount {
+    color: #8B5CF6;
+}
+
+.payment-when {
+    font-size: 0.75rem;
+    color: #6B7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Точки на timeline */
+.stage-point {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 5;
+    flex-shrink: 0;
+}
+
+.stage-point.active {
+    animation: pulse 2s infinite;
+}
+
+.stage-point:hover {
+    transform: scale(1.4);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0), 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Gate */
+.gate-stage {
+    flex-shrink: 0;
+    margin: 0 1rem;
+}
+
+.gate {
+    position: relative;
+    cursor: pointer;
+    z-index: 15;
+    transition: transform 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.gate:hover {
+    transform: scale(1.1);
+}
+
+.gate-line {
+    width: 4px;
+    height: 120px;
+    background: #D1D5DB;
+    border-radius: 2px;
+    margin: 0 auto;
+    transition: background 0.5s ease;
+}
+
+.gate.delivered .gate-line {
+    background: #10B981;
+}
+
+.gate-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: #D1D5DB;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s ease;
+}
+
+.gate.delivered .gate-icon {
+    background: #10B981;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.gate-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.gate-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6B7280;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.gate.delivered ~ .gate-label,
+.gate.delivered + .gate-label {
+    color: #10B981;
+}
+
+.gate-subtitle {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+/* Tooltips */
+.tooltip {
+    position: absolute;
+    bottom: calc(100% + 1.5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    min-width: 240px;
+    max-width: 280px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    border: 1px solid #E5E7EB;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+}
+
+.stage:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.tooltip-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+}
+
+.tooltip-amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #3B82F6;
+    margin-bottom: 0.5rem;
+}
+
+.tooltip-when {
+    font-size: 0.75rem;
+    color: #6B7280;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.tooltip-type {
+    font-size: 0.75rem;
+    color: #1E40AF;
+    font-weight: 500;
+    padding-top: 0.5rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.tooltip-warning {
+    font-size: 0.75rem;
+    color: #92400E;
+    background: #FEF3C7;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+.tooltip-status {
+    font-size: 0.75rem;
+    color: #6B7280;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.tooltip-breakdown {
+    font-size: 0.75rem;
+    color: #6B7280;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.tooltip-breakdown div {
+    margin-bottom: 0.25rem;
+}
+
+/* Summary */
+.summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E5E7EB;
+}
+
+.summary-item.highlight {
+    background: #FFFBEB;
+    border-color: #FCD34D;
+}
+
+.summary-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3B82F6;
+    min-width: 2rem;
+}
+
+.summary-item.highlight .summary-number {
+    color: #F59E0B;
+}
+
+.summary-text {
+    font-size: 0.9375rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .timeline-container {
+        padding: 5rem 2rem 7rem;
+    }
+    
+    .progress-line {
+        left: 60px;
+        right: 60px;
+        top: 160px;
+    }
+    
+    .payment-card {
+        min-width: 140px;
+        padding: 1.25rem 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .timeline-container {
+        padding: 4rem 1.5rem 6rem;
+        border-radius: 16px;
+    }
+
+    .progress-line {
+        left: 40px;
+        right: 40px;
+        top: 140px;
+    }
+
+    .stages {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        padding-left: 1.5rem;
+    }
+
+    .stage {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .payment-card {
+        min-width: 140px;
+        margin-bottom: 0;
+        order: 1;
+    }
+
+    .stage-point {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .gate {
+        margin-bottom: 0;
+    }
+
+    .gate-line {
+        width: 80px;
+        height: 4px;
+        margin: 0;
+    }
+
+    .gate-icon {
+        top: 50%;
+        left: 40px;
+    }
+
+    .gate-label,
+    .gate-subtitle {
+        text-align: left;
+        margin-left: 1rem;
+    }
+
+    .tooltip {
+        left: 0;
+        transform: translateX(0) translateY(-10px);
+        min-width: 280px;
+        max-width: calc(100vw - 3rem);
+    }
+
+    .tooltip::after {
+        left: 2rem;
+    }
+
+    .summary {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .summary-item {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.75rem;
+    }
+
+    .payment-card {
+        min-width: 120px;
+        padding: 1rem 0.75rem;
+    }
+
+    .payment-number {
+        font-size: 1.5rem;
+    }
+
+    .payment-amount {
+        font-size: 1rem;
+    }
+}

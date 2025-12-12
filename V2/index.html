@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Payment Model</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Схема оплаты проекта</h1>
+            <p>Прозрачная модель подписки с гарантией качества</p>
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="timeline-container">
+                <!-- Линия прогресса -->
+                <div class="progress-line">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-blocked" id="progressBlocked"></div>
+                </div>
+
+                <!-- Этапы оплат -->
+                <div class="stages">
+                    <!-- 1 оплата -->
+                    <div class="stage payment-stage" data-stage="payment1">
+                        <div class="payment-card development">
+                            <div class="payment-number">1</div>
+                            <div class="payment-amount">100 000 AMD</div>
+                            <div class="payment-when">В начале работы</div>
+                        </div>
+                        <div class="stage-point active" style="background-color: #3B82F6;"></div>
+                        <div class="tooltip">
+                            <div class="tooltip-title">1 оплата</div>
+                            <div class="tooltip-amount">100 000 AMD</div>
+                            <div class="tooltip-when">В начале работы</div>
+                            <div class="tooltip-type">Разработка проекта</div>
+                        </div>
+                    </div>
+
+                    <!-- 2 оплата -->
+                    <div class="stage payment-stage" data-stage="payment2">
+                        <div class="payment-card development">
+                            <div class="payment-number">2</div>
+                            <div class="payment-amount">100 000 AMD</div>
+                            <div class="payment-when">Через 1 месяц</div>
+                        </div>
+                        <div class="stage-point active" style="background-color: #3B82F6;"></div>
+                        <div class="tooltip">
+                            <div class="tooltip-title">2 оплата</div>
+                            <div class="tooltip-amount">100 000 AMD</div>
+                            <div class="tooltip-when">Через 1 месяц</div>
+                            <div class="tooltip-type">Разработка проекта</div>
+                        </div>
+                    </div>
+
+                    <!-- 3 оплата -->
+                    <div class="stage payment-stage" data-stage="payment3">
+                        <div class="payment-card development">
+                            <div class="payment-number">3</div>
+                            <div class="payment-amount">100 000 AMD</div>
+                            <div class="payment-when">Через 1 месяц</div>
+                        </div>
+                        <div class="stage-point active" style="background-color: #3B82F6;"></div>
+                        <div class="tooltip">
+                            <div class="tooltip-title">3 оплата</div>
+                            <div class="tooltip-amount">100 000 AMD</div>
+                            <div class="tooltip-when">Через 1 месяц</div>
+                            <div class="tooltip-type">Разработка проекта</div>
+                        </div>
+                    </div>
+
+                    <!-- Gate - Проект сдан -->
+                    <div class="stage gate-stage" data-stage="gate">
+                        <div class="gate" id="deliveryGate">
+                            <div class="gate-line"></div>
+                            <div class="gate-icon">
+                                <svg id="gateIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M6 10V8a6 6 0 0112 0v2M8 10h8a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6a2 2 0 012-2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="gate-label">Проект сдан</div>
+                        <div class="gate-subtitle">В конце 3 месяца</div>
+                        <div class="tooltip">
+                            <div class="tooltip-title">Проект сдан клиенту</div>
+                            <div class="tooltip-warning">⚠️ Если проект не получен — оплата приостанавливается</div>
+                            <div class="tooltip-status" id="gateStatus">🔒 Не сдан</div>
+                        </div>
+                    </div>
+
+                    <!-- 4 оплата и далее -->
+                    <div class="stage payment-stage" data-stage="payment4">
+                        <div class="payment-card subscription" id="payment4Card">
+                            <div class="payment-number">4+</div>
+                            <div class="payment-amount">150 000 AMD</div>
+                            <div class="payment-when">После получения</div>
+                        </div>
+                        <div class="stage-point" id="payment4Point" style="background-color: #9CA3AF;"></div>
+                        <div class="tooltip">
+                            <div class="tooltip-title">4, 5 и остальные оплаты</div>
+                            <div class="tooltip-amount">150 000 AMD</div>
+                            <div class="tooltip-when">После получения проекта</div>
+                            <div class="tooltip-breakdown">
+                                <div>Subscription: 100 000 AMD</div>
+                                <div>Maintenance: 50 000 AMD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance Only -->
+                    <div class="stage payment-stage" data-stage="maintenance">
+                        <div class="payment-card maintenance" id="maintenanceCard">
+                            <div class="payment-number">12+</div>
+                            <div class="payment-amount">50 000 AMD</div>
+                            <div class="payment-when">После 12 месяцев</div>
+                        </div>
+                        <div class="stage-point" id="maintenancePoint" style="background-color: #9CA3AF;"></div>
+                        <div class="tooltip">
+                            <div class="tooltip-title">Только Maintenance</div>
+                            <div class="tooltip-amount">50 000 AMD</div>
+                            <div class="tooltip-when">После 12 месяцев</div>
+                            <div class="tooltip-type">Subscription закончился</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Краткое описание -->
+        <div class="summary">
+            <div class="summary-item">
+                <span class="summary-number">1-3</span>
+                <span class="summary-text">Оплаты за разработку (100 000 AMD)</span>
+            </div>
+            <div class="summary-item highlight">
+                <span class="summary-number">→</span>
+                <span class="summary-text">Проект сдаётся в конце 3 месяца</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-number">4+</span>
+                <span class="summary-text">Оплаты после получения (150 000 AMD)</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
