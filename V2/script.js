@@ -1,22 +1,18 @@
-// Простой JavaScript без зависимостей
+// JavaScript для горизонтального скролл timeline
 
 document.addEventListener('DOMContentLoaded', function() {
-    const progressFill = document.getElementById('progressFill');
-    const progressBlocked = document.getElementById('progressBlocked');
+    const timelineFill = document.getElementById('timelineFill');
+    const timelineBlocked = document.getElementById('timelineBlocked');
     const deliveryGate = document.getElementById('deliveryGate');
     const gateIcon = document.getElementById('gateIcon');
-    const gateStatus = document.getElementById('gateStatus');
-    const payment4Point = document.getElementById('payment4Point');
-    const payment4Card = document.getElementById('payment4Card');
-    const maintenancePoint = document.getElementById('maintenancePoint');
-    const maintenanceCard = document.getElementById('maintenanceCard');
-
+    
     let isDelivered = false;
 
-    // Анимация начального прогресса (первые 3 оплаты)
+    // Анимация начального прогресса (первые 3 месяца)
+    // 3 этапа разработки из 15 общих этапов = 20%
     setTimeout(() => {
-        progressFill.style.width = '60%'; // 3 оплаты из 5 этапов = 60%
-        progressBlocked.style.width = '40%'; // Остальное заблокировано
+        timelineFill.style.width = '20%';
+        timelineBlocked.style.width = '80%';
     }, 500);
 
     // Обработка клика на Gate
@@ -33,39 +29,49 @@ document.addEventListener('DOMContentLoaded', function() {
                       d="M5 13l4 4L19 7"/>
             `;
             
-            // Обновляем статус
-            gateStatus.innerHTML = '✅ <strong>Проект сдан</strong>';
-            gateStatus.style.color = '#10B981';
-            
             // Обновляем подпись Gate
-            const gateLabel = deliveryGate.closest('.stage').querySelector('.gate-label');
-            const gateSubtitle = deliveryGate.closest('.stage').querySelector('.gate-subtitle');
+            const gateLabel = deliveryGate.closest('.timeline-stage').querySelector('.gate-label');
             if (gateLabel) {
                 gateLabel.style.color = '#10B981';
                 gateLabel.textContent = 'Проект сдан ✅';
             }
-            if (gateSubtitle) {
-                gateSubtitle.textContent = 'Клиент получил проект';
-            }
             
-            // Активируем следующие этапы
+            // Активируем все этапы обслуживания (4-12)
             setTimeout(() => {
-                // 4+ оплата
-                payment4Point.style.backgroundColor = '#10B981';
-                payment4Point.classList.add('active');
-                payment4Card.classList.remove('blocked');
-                payment4Card.classList.add('subscription');
+                // Активируем месяцы 4-12
+                for (let i = 4; i <= 12; i++) {
+                    const point = document.getElementById(`point${i}`);
+                    const card = document.getElementById(`card${i}`);
+                    
+                    if (point) {
+                        point.style.backgroundColor = '#10B981';
+                        point.classList.add('active');
+                        point.classList.remove('blocked');
+                    }
+                    
+                    if (card) {
+                        card.classList.remove('blocked');
+                    }
+                }
                 
-                // Maintenance
-                maintenancePoint.style.backgroundColor = '#8B5CF6';
-                maintenancePoint.classList.add('active');
-                maintenanceCard.classList.remove('blocked');
-                maintenanceCard.classList.add('maintenance');
+                // Активируем Maintenance
+                const maintenancePoint = document.getElementById('pointMaintenance');
+                const maintenanceCard = document.getElementById('cardMaintenance');
+                
+                if (maintenancePoint) {
+                    maintenancePoint.style.backgroundColor = '#8B5CF6';
+                    maintenancePoint.classList.add('active');
+                    maintenancePoint.classList.remove('blocked');
+                }
+                
+                if (maintenanceCard) {
+                    maintenanceCard.classList.remove('blocked');
+                }
                 
                 // Анимация прогресса после Gate
-                progressFill.classList.add('delivered');
-                progressFill.style.width = '100%';
-                progressBlocked.classList.add('hidden');
+                timelineFill.classList.add('delivered');
+                timelineFill.style.width = '100%';
+                timelineBlocked.classList.add('hidden');
                 
                 // Ripple эффект
                 const ripple = document.createElement('div');
@@ -89,6 +95,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Изначально блокируем этапы обслуживания
+    for (let i = 4; i <= 12; i++) {
+        const point = document.getElementById(`point${i}`);
+        const card = document.getElementById(`card${i}`);
+        
+        if (point) {
+            point.classList.add('blocked');
+        }
+        
+        if (card) {
+            card.classList.add('blocked');
+        }
+    }
+    
+    const maintenancePoint = document.getElementById('pointMaintenance');
+    const maintenanceCard = document.getElementById('cardMaintenance');
+    
+    if (maintenancePoint) {
+        maintenancePoint.classList.add('blocked');
+    }
+    
+    if (maintenanceCard) {
+        maintenanceCard.classList.add('blocked');
+    }
+
     // Добавляем CSS для ripple анимации
     const style = document.createElement('style');
     style.textContent = `
@@ -101,4 +132,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+
+    // Плавный скролл при загрузке (показываем начало)
+    const scrollWrapper = document.querySelector('.timeline-scroll-wrapper');
+    if (scrollWrapper) {
+        setTimeout(() => {
+            scrollWrapper.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
 });

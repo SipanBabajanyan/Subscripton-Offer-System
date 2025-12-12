@@ -16,135 +16,169 @@
             <p>Прозрачная модель подписки с гарантией качества</p>
         </div>
 
-        <div class="timeline-wrapper">
-            <div class="timeline-container">
-                <!-- Линия прогресса -->
-                <div class="progress-line">
-                    <div class="progress-fill" id="progressFill"></div>
-                    <div class="progress-blocked" id="progressBlocked"></div>
+        <!-- Горизонтальный скролл контейнер -->
+        <div class="timeline-scroll-wrapper">
+            <div class="timeline-scroll-container">
+                <!-- Единая линия прогресса -->
+                <div class="timeline-line">
+                    <div class="timeline-line-fill" id="timelineFill"></div>
+                    <div class="timeline-line-blocked" id="timelineBlocked"></div>
                 </div>
 
-                <!-- Этапы оплат -->
-                <div class="stages">
-                    <!-- 1 оплата -->
-                    <div class="stage payment-stage" data-stage="payment1">
-                        <div class="payment-card development">
-                            <div class="payment-number">1</div>
-                            <div class="payment-amount">100 000 AMD</div>
-                            <div class="payment-when">В начале работы</div>
+                <!-- Все этапы в одной линии -->
+                <div class="timeline-stages">
+                    <!-- Месяц 1 - Разработка -->
+                    <div class="timeline-stage development" data-month="1">
+                        <div class="stage-card">
+                            <div class="stage-number">1</div>
+                            <div class="stage-amount">100 000</div>
+                            <div class="stage-label">Разработка</div>
                         </div>
-                        <div class="stage-point active" style="background-color: #3B82F6;"></div>
-                        <div class="tooltip">
-                            <div class="tooltip-title">1 оплата</div>
-                            <div class="tooltip-amount">100 000 AMD</div>
-                            <div class="tooltip-when">В начале работы</div>
-                            <div class="tooltip-type">Разработка проекта</div>
-                        </div>
+                        <div class="stage-point active" id="point1"></div>
                     </div>
 
-                    <!-- 2 оплата -->
-                    <div class="stage payment-stage" data-stage="payment2">
-                        <div class="payment-card development">
-                            <div class="payment-number">2</div>
-                            <div class="payment-amount">100 000 AMD</div>
-                            <div class="payment-when">Через 1 месяц</div>
+                    <!-- Месяц 2 - Разработка -->
+                    <div class="timeline-stage development" data-month="2">
+                        <div class="stage-card">
+                            <div class="stage-number">2</div>
+                            <div class="stage-amount">100 000</div>
+                            <div class="stage-label">Разработка</div>
                         </div>
-                        <div class="stage-point active" style="background-color: #3B82F6;"></div>
-                        <div class="tooltip">
-                            <div class="tooltip-title">2 оплата</div>
-                            <div class="tooltip-amount">100 000 AMD</div>
-                            <div class="tooltip-when">Через 1 месяц</div>
-                            <div class="tooltip-type">Разработка проекта</div>
-                        </div>
+                        <div class="stage-point active" id="point2"></div>
                     </div>
 
-                    <!-- 3 оплата -->
-                    <div class="stage payment-stage" data-stage="payment3">
-                        <div class="payment-card development">
-                            <div class="payment-number">3</div>
-                            <div class="payment-amount">100 000 AMD</div>
-                            <div class="payment-when">Через 1 месяц</div>
+                    <!-- Месяц 3 - Разработка -->
+                    <div class="timeline-stage development" data-month="3">
+                        <div class="stage-card">
+                            <div class="stage-number">3</div>
+                            <div class="stage-amount">100 000</div>
+                            <div class="stage-label">Разработка</div>
                         </div>
-                        <div class="stage-point active" style="background-color: #3B82F6;"></div>
-                        <div class="tooltip">
-                            <div class="tooltip-title">3 оплата</div>
-                            <div class="tooltip-amount">100 000 AMD</div>
-                            <div class="tooltip-when">Через 1 месяц</div>
-                            <div class="tooltip-type">Разработка проекта</div>
-                        </div>
+                        <div class="stage-point active" id="point3"></div>
                     </div>
 
-                    <!-- Gate - Проект сдан -->
-                    <div class="stage gate-stage" data-stage="gate">
-                        <div class="gate" id="deliveryGate">
-                            <div class="gate-line"></div>
+                    <!-- Gate - Передача проекта -->
+                    <div class="timeline-stage gate" data-stage="gate">
+                        <div class="gate-container" id="deliveryGate">
+                            <div class="gate-line-vertical"></div>
                             <div class="gate-icon">
-                                <svg id="gateIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <svg id="gateIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <path d="M6 10V8a6 6 0 0112 0v2M8 10h8a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6a2 2 0 012-2z"/>
                                 </svg>
                             </div>
                         </div>
                         <div class="gate-label">Проект сдан</div>
-                        <div class="gate-subtitle">В конце 3 месяца</div>
-                        <div class="tooltip">
-                            <div class="tooltip-title">Проект сдан клиенту</div>
-                            <div class="tooltip-warning">⚠️ Если проект не получен — оплата приостанавливается</div>
-                            <div class="tooltip-status" id="gateStatus">🔒 Не сдан</div>
-                        </div>
                     </div>
 
-                    <!-- 4 оплата и далее -->
-                    <div class="stage payment-stage" data-stage="payment4">
-                        <div class="payment-card subscription" id="payment4Card">
-                            <div class="payment-number">4+</div>
-                            <div class="payment-amount">150 000 AMD</div>
-                            <div class="payment-when">После получения</div>
+                    <!-- Месяц 4 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="4">
+                        <div class="stage-card" id="card4">
+                            <div class="stage-number">4</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
                         </div>
-                        <div class="stage-point" id="payment4Point" style="background-color: #9CA3AF;"></div>
-                        <div class="tooltip">
-                            <div class="tooltip-title">4, 5 и остальные оплаты</div>
-                            <div class="tooltip-amount">150 000 AMD</div>
-                            <div class="tooltip-when">После получения проекта</div>
-                            <div class="tooltip-breakdown">
-                                <div>Subscription: 100 000 AMD</div>
-                                <div>Maintenance: 50 000 AMD</div>
-                            </div>
-                        </div>
+                        <div class="stage-point" id="point4"></div>
                     </div>
 
-                    <!-- Maintenance Only -->
-                    <div class="stage payment-stage" data-stage="maintenance">
-                        <div class="payment-card maintenance" id="maintenanceCard">
-                            <div class="payment-number">12+</div>
-                            <div class="payment-amount">50 000 AMD</div>
-                            <div class="payment-when">После 12 месяцев</div>
+                    <!-- Месяц 5 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="5">
+                        <div class="stage-card" id="card5">
+                            <div class="stage-number">5</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
                         </div>
-                        <div class="stage-point" id="maintenancePoint" style="background-color: #9CA3AF;"></div>
-                        <div class="tooltip">
-                            <div class="tooltip-title">Только Maintenance</div>
-                            <div class="tooltip-amount">50 000 AMD</div>
-                            <div class="tooltip-when">После 12 месяцев</div>
-                            <div class="tooltip-type">Subscription закончился</div>
+                        <div class="stage-point" id="point5"></div>
+                    </div>
+
+                    <!-- Месяц 6 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="6">
+                        <div class="stage-card" id="card6">
+                            <div class="stage-number">6</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
                         </div>
+                        <div class="stage-point" id="point6"></div>
+                    </div>
+
+                    <!-- Месяц 7 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="7">
+                        <div class="stage-card" id="card7">
+                            <div class="stage-number">7</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
+                        </div>
+                        <div class="stage-point" id="point7"></div>
+                    </div>
+
+                    <!-- Месяц 8 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="8">
+                        <div class="stage-card" id="card8">
+                            <div class="stage-number">8</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
+                        </div>
+                        <div class="stage-point" id="point8"></div>
+                    </div>
+
+                    <!-- Месяц 9 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="9">
+                        <div class="stage-card" id="card9">
+                            <div class="stage-number">9</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
+                        </div>
+                        <div class="stage-point" id="point9"></div>
+                    </div>
+
+                    <!-- Месяц 10 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="10">
+                        <div class="stage-card" id="card10">
+                            <div class="stage-number">10</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
+                        </div>
+                        <div class="stage-point" id="point10"></div>
+                    </div>
+
+                    <!-- Месяц 11 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="11">
+                        <div class="stage-card" id="card11">
+                            <div class="stage-number">11</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
+                        </div>
+                        <div class="stage-point" id="point11"></div>
+                    </div>
+
+                    <!-- Месяц 12 - Subscription + Maintenance -->
+                    <div class="timeline-stage service" data-month="12">
+                        <div class="stage-card" id="card12">
+                            <div class="stage-number">12</div>
+                            <div class="stage-amount">150 000</div>
+                            <div class="stage-label">Sub + Maint</div>
+                        </div>
+                        <div class="stage-point" id="point12"></div>
+                    </div>
+
+                    <!-- После 12 месяцев - Только Maintenance -->
+                    <div class="timeline-stage maintenance" data-stage="maintenance">
+                        <div class="stage-card" id="cardMaintenance">
+                            <div class="stage-number">12+</div>
+                            <div class="stage-amount">50 000</div>
+                            <div class="stage-label">Maintenance</div>
+                        </div>
+                        <div class="stage-point" id="pointMaintenance"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Краткое описание -->
-        <div class="summary">
-            <div class="summary-item">
-                <span class="summary-number">1-3</span>
-                <span class="summary-text">Оплаты за разработку (100 000 AMD)</span>
-            </div>
-            <div class="summary-item highlight">
-                <span class="summary-number">→</span>
-                <span class="summary-text">Проект сдаётся в конце 3 месяца</span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-number">4+</span>
-                <span class="summary-text">Оплаты после получения (150 000 AMD)</span>
-            </div>
+        <!-- Инструкция по скроллу -->
+        <div class="scroll-hint">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            <span>Прокрутите вправо, чтобы увидеть все этапы</span>
         </div>
     </div>
 

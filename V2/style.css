@@ -15,22 +15,22 @@ body {
 .container {
     width: 100%;
     min-height: 100vh;
-    padding: 4rem 1.5rem;
-    max-width: 1600px;
+    padding: 3rem 1.5rem;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 /* Header */
 .header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .header h1 {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
 }
 
@@ -40,32 +40,57 @@ body {
     font-weight: 400;
 }
 
-/* Timeline */
-.timeline-wrapper {
-    margin-bottom: 4rem;
+/* Горизонтальный скролл контейнер */
+.timeline-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #D1D5DB #F9FAFB;
 }
 
-.timeline-container {
+.timeline-scroll-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-track {
+    background: #F9FAFB;
+    border-radius: 4px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 4px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+}
+
+.timeline-scroll-container {
     position: relative;
-    padding: 6rem 3rem 8rem;
+    min-width: 2400px;
+    padding: 4rem 2rem 6rem;
     background: white;
-    border-radius: 24px;
+    border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Линия прогресса */
-.progress-line {
+/* Единая линия прогресса */
+.timeline-line {
     position: absolute;
-    top: 180px;
-    left: 80px;
-    right: 80px;
+    top: 200px;
+    left: 2rem;
+    right: 2rem;
     height: 3px;
     background: #E5E7EB;
     border-radius: 2px;
     z-index: 1;
 }
 
-.progress-fill {
+.timeline-line-fill {
     position: absolute;
     left: 0;
     top: 0;
@@ -73,107 +98,139 @@ body {
     background: #3B82F6;
     border-radius: 2px;
     width: 0%;
-    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
 }
 
-.progress-fill.delivered {
-    background: linear-gradient(to right, #3B82F6, #10B981, #8B5CF6);
+.timeline-line-fill.delivered {
+    background: #10B981;
 }
 
-.progress-blocked {
+.timeline-line-blocked {
     position: absolute;
-    left: 60%;
+    left: 20%;
     top: 0;
     height: 100%;
     background: #D1D5DB;
     border-radius: 2px;
     width: 0%;
-    opacity: 0.5;
+    opacity: 0.4;
     transition: width 0.5s ease;
 }
 
-.progress-blocked.hidden {
+.timeline-line-blocked.hidden {
     display: none;
 }
 
-/* Этапы */
-.stages {
+/* Контейнер этапов */
+.timeline-stages {
     position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
+    gap: 0;
     z-index: 10;
-    gap: 1rem;
 }
 
-.stage {
+/* Этап */
+.timeline-stage {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
-    min-width: 0;
+    min-width: 180px;
+    flex-shrink: 0;
 }
 
-/* Карточки оплат */
-.payment-card {
+/* Карточка этапа */
+.stage-card {
     background: white;
-    border-radius: 16px;
-    padding: 1.5rem 1.25rem;
-    min-width: 160px;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    min-width: 140px;
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 2px solid transparent;
     transition: all 0.3s ease;
     margin-bottom: 1rem;
 }
 
-.payment-card.development {
-    border-color: #DBEAFE;
-    background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
+.stage-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.payment-card.subscription {
-    border-color: #D1FAE5;
-    background: linear-gradient(135deg, #ECFDF5 0%, #FFFFFF 100%);
+/* Разработка - синий */
+.timeline-stage.development .stage-card {
+    border-color: #3B82F6;
 }
 
-.payment-card.maintenance {
-    border-color: #F3E8FF;
-    background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
+.timeline-stage.development .stage-point {
+    background-color: #3B82F6;
 }
 
-.payment-card.blocked {
-    border-color: #E5E7EB;
-    background: #F9FAFB;
-    opacity: 0.6;
+/* Service - зеленый */
+.timeline-stage.service .stage-card {
+    border-color: #10B981;
 }
 
-.payment-number {
-    font-size: 2rem;
+.timeline-stage.service .stage-point {
+    background-color: #10B981;
+}
+
+.timeline-stage.service .stage-card.blocked {
+    border-color: #9CA3AF;
+    opacity: 0.5;
+}
+
+.timeline-stage.service .stage-point.blocked {
+    background-color: #9CA3AF;
+}
+
+/* Maintenance - фиолетовый */
+.timeline-stage.maintenance .stage-card {
+    border-color: #8B5CF6;
+}
+
+.timeline-stage.maintenance .stage-point {
+    background-color: #8B5CF6;
+}
+
+.timeline-stage.maintenance .stage-card.blocked {
+    border-color: #9CA3AF;
+    opacity: 0.5;
+}
+
+.timeline-stage.maintenance .stage-point.blocked {
+    background-color: #9CA3AF;
+}
+
+.stage-number {
+    font-size: 1.75rem;
     font-weight: 700;
     color: #111827;
     margin-bottom: 0.5rem;
     line-height: 1;
 }
 
-.payment-amount {
-    font-size: 1.25rem;
+.stage-amount {
+    font-size: 1.125rem;
     font-weight: 600;
-    color: #3B82F6;
-    margin-bottom: 0.5rem;
+    color: #111827;
+    margin-bottom: 0.25rem;
 }
 
-.payment-card.subscription .payment-amount {
+.timeline-stage.development .stage-amount {
+    color: #3B82F6;
+}
+
+.timeline-stage.service .stage-amount {
     color: #10B981;
 }
 
-.payment-card.maintenance .payment-amount {
+.timeline-stage.maintenance .stage-amount {
     color: #8B5CF6;
 }
 
-.payment-when {
+.stage-label {
     font-size: 0.75rem;
     color: #6B7280;
     font-weight: 500;
@@ -181,7 +238,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Точки на timeline */
+/* Точка на линии */
 .stage-point {
     width: 16px;
     height: 16px;
@@ -200,8 +257,7 @@ body {
 }
 
 .stage-point:hover {
-    transform: scale(1.4);
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+    transform: scale(1.3);
 }
 
 @keyframes pulse {
@@ -214,12 +270,12 @@ body {
 }
 
 /* Gate */
-.gate-stage {
-    flex-shrink: 0;
+.timeline-stage.gate {
+    min-width: 120px;
     margin: 0 1rem;
 }
 
-.gate {
+.gate-container {
     position: relative;
     cursor: pointer;
     z-index: 15;
@@ -227,20 +283,20 @@ body {
     margin-bottom: 1rem;
 }
 
-.gate:hover {
+.gate-container:hover {
     transform: scale(1.1);
 }
 
-.gate-line {
+.gate-line-vertical {
     width: 4px;
-    height: 120px;
+    height: 100px;
     background: #D1D5DB;
     border-radius: 2px;
     margin: 0 auto;
     transition: background 0.5s ease;
 }
 
-.gate.delivered .gate-line {
+.gate-container.delivered .gate-line-vertical {
     background: #10B981;
 }
 
@@ -261,14 +317,14 @@ body {
     transition: all 0.5s ease;
 }
 
-.gate.delivered .gate-icon {
+.gate-container.delivered .gate-icon {
     background: #10B981;
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
 }
 
 .gate-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 .gate-label {
@@ -279,176 +335,39 @@ body {
     text-align: center;
 }
 
-.gate.delivered ~ .gate-label,
-.gate.delivered + .gate-label {
+.gate-container.delivered ~ .gate-label,
+.gate-container.delivered + .gate-label {
     color: #10B981;
 }
 
-.gate-subtitle {
-    font-size: 0.75rem;
-    color: #9CA3AF;
-    margin-top: 0.25rem;
-    text-align: center;
-}
-
-/* Tooltips */
-.tooltip {
-    position: absolute;
-    bottom: calc(100% + 1.5rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-    background: white;
-    border-radius: 12px;
-    padding: 1.25rem;
-    min-width: 240px;
-    max-width: 280px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-    border: 1px solid #E5E7EB;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 100;
-}
-
-.tooltip::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid white;
-}
-
-.stage:hover .tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
-
-.tooltip-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 0.75rem;
-}
-
-.tooltip-amount {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #3B82F6;
-    margin-bottom: 0.5rem;
-}
-
-.tooltip-when {
-    font-size: 0.75rem;
-    color: #6B7280;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.tooltip-type {
-    font-size: 0.75rem;
-    color: #1E40AF;
-    font-weight: 500;
-    padding-top: 0.5rem;
-    border-top: 1px solid #E5E7EB;
-}
-
-.tooltip-warning {
-    font-size: 0.75rem;
-    color: #92400E;
-    background: #FEF3C7;
-    padding: 0.5rem;
-    border-radius: 6px;
-    margin: 0.5rem 0;
-    font-weight: 500;
-}
-
-.tooltip-status {
-    font-size: 0.75rem;
-    color: #6B7280;
-    font-weight: 500;
-    margin-top: 0.5rem;
-}
-
-.tooltip-breakdown {
-    font-size: 0.75rem;
-    color: #6B7280;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid #E5E7EB;
-}
-
-.tooltip-breakdown div {
-    margin-bottom: 0.25rem;
-}
-
-/* Summary */
-.summary {
+/* Подсказка скролла */
+.scroll-hint {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.summary-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.5rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    border: 1px solid #E5E7EB;
-}
-
-.summary-item.highlight {
-    background: #FFFBEB;
-    border-color: #FCD34D;
-}
-
-.summary-number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #3B82F6;
-    min-width: 2rem;
-}
-
-.summary-item.highlight .summary-number {
-    color: #F59E0B;
-}
-
-.summary-text {
-    font-size: 0.9375rem;
-    color: #374151;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    color: #6B7280;
+    font-size: 0.875rem;
     font-weight: 500;
+}
+
+.scroll-hint svg {
+    color: #9CA3AF;
+    animation: slideRight 2s infinite;
+}
+
+@keyframes slideRight {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(4px);
+    }
 }
 
 /* Адаптивность */
-@media (max-width: 1200px) {
-    .timeline-container {
-        padding: 5rem 2rem 7rem;
-    }
-    
-    .progress-line {
-        left: 60px;
-        right: 60px;
-        top: 160px;
-    }
-    
-    .payment-card {
-        min-width: 140px;
-        padding: 1.25rem 1rem;
-    }
-}
-
 @media (max-width: 768px) {
     .container {
         padding: 2rem 1rem;
@@ -458,104 +377,40 @@ body {
         font-size: 2rem;
     }
 
-    .header p {
-        font-size: 1rem;
+    .timeline-scroll-container {
+        min-width: 2000px;
+        padding: 3rem 1.5rem 5rem;
     }
 
-    .timeline-container {
-        padding: 4rem 1.5rem 6rem;
-        border-radius: 16px;
+    .timeline-stage {
+        min-width: 160px;
     }
 
-    .progress-line {
-        left: 40px;
-        right: 40px;
-        top: 140px;
-    }
-
-    .stages {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2rem;
-        padding-left: 1.5rem;
-    }
-
-    .stage {
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        gap: 1rem;
-    }
-
-    .payment-card {
-        min-width: 140px;
-        margin-bottom: 0;
-        order: 1;
-    }
-
-    .stage-point {
-        order: 2;
-        margin-left: auto;
-    }
-
-    .gate {
-        margin-bottom: 0;
-    }
-
-    .gate-line {
-        width: 80px;
-        height: 4px;
-        margin: 0;
-    }
-
-    .gate-icon {
-        top: 50%;
-        left: 40px;
-    }
-
-    .gate-label,
-    .gate-subtitle {
-        text-align: left;
-        margin-left: 1rem;
-    }
-
-    .tooltip {
-        left: 0;
-        transform: translateX(0) translateY(-10px);
-        min-width: 280px;
-        max-width: calc(100vw - 3rem);
-    }
-
-    .tooltip::after {
-        left: 2rem;
-    }
-
-    .summary {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-    }
-
-    .summary-item {
-        justify-content: flex-start;
-    }
-}
-
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 1.75rem;
-    }
-
-    .payment-card {
+    .stage-card {
         min-width: 120px;
         padding: 1rem 0.75rem;
     }
 
-    .payment-number {
+    .stage-number {
         font-size: 1.5rem;
     }
 
-    .payment-amount {
+    .stage-amount {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-scroll-container {
+        min-width: 1800px;
+    }
+
+    .timeline-stage {
+        min-width: 140px;
+    }
+
+    .stage-card {
+        min-width: 100px;
+        padding: 0.875rem 0.5rem;
     }
 }
