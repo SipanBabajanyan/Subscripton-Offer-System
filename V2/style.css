@@ -291,9 +291,9 @@ body {
 /* Карточка этапа */
 .stage-card {
     background: #FFFFFF;
-    border: 2px solid #E2E8F0;
-    border-radius: 16px;
-    padding: 1.5rem 1.25rem;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem;
     width: 100%;
     max-width: 170px;
     text-align: center;
@@ -302,12 +302,8 @@ body {
     position: relative;
     z-index: 10;
     margin-top: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.stage-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
 }
 
 .stage-card::before {
@@ -316,25 +312,50 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 5px;
     background: transparent;
-    border-radius: 16px 16px 0 0;
+    border-radius: 20px 20px 0 0;
     transition: background 0.3s ease;
+}
+
+.stage-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+.stage-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: transparent;
+}
+
+.stage-card:hover::after {
+    opacity: 1;
 }
 
 /* Разработка - синий */
 .timeline-stage.development .stage-card {
-    border-color: rgba(59, 130, 246, 0.3);
-    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
+    border-color: rgba(59, 130, 246, 0.25);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 50%, #F1F5FF 100%);
 }
 
 .timeline-stage.development .stage-card::before {
-    background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%);
+    background: linear-gradient(90deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
 .timeline-stage.development .stage-card:hover {
-    border-color: #3B82F6;
-    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.25), 0 4px 12px rgba(59, 130, 246, 0.15);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFF 100%);
 }
 
 .timeline-stage.development .stage-point {
@@ -344,17 +365,18 @@ body {
 
 /* Service - зеленый */
 .timeline-stage.service .stage-card {
-    border-color: rgba(16, 185, 129, 0.3);
-    background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%);
+    border-color: rgba(16, 185, 129, 0.25);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 50%, #ECFDF5 100%);
 }
 
 .timeline-stage.service .stage-card::before {
-    background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+    background: linear-gradient(90deg, #10B981 0%, #059669 50%, #047857 100%);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
 .timeline-stage.service .stage-card:hover {
-    border-color: #10B981;
-    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 12px 32px rgba(16, 185, 129, 0.25), 0 4px 12px rgba(16, 185, 129, 0.15);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%);
 }
 
 .timeline-stage.service .stage-point {
@@ -379,17 +401,18 @@ body {
 
 /* Maintenance - фиолетовый */
 .timeline-stage.maintenance .stage-card {
-    border-color: rgba(139, 92, 246, 0.3);
-    background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
+    border-color: rgba(139, 92, 246, 0.25);
+    background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 50%, #F5F3FF 100%);
 }
 
 .timeline-stage.maintenance .stage-card::before {
-    background: linear-gradient(90deg, #8B5CF6 0%, #7C3AED 100%);
+    background: linear-gradient(90deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 .timeline-stage.maintenance .stage-card:hover {
-    border-color: #8B5CF6;
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 12px 32px rgba(139, 92, 246, 0.25), 0 4px 12px rgba(139, 92, 246, 0.15);
+    background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
 }
 
 .timeline-stage.maintenance .stage-point {
@@ -413,20 +436,21 @@ body {
 }
 
 .stage-number {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 2.25rem;
+    font-weight: 900;
     color: #0F172A;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .stage-amount {
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
     color: #0F172A;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 0.625rem;
+    letter-spacing: -0.015em;
 }
 
 .timeline-stage.development .stage-amount {
