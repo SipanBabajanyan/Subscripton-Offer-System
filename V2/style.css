@@ -885,45 +885,293 @@ body {
     }
     
     .timeline-scroll-container {
-        padding: 1.5rem 0.75rem 3rem;
+        padding: 2rem 1rem 3rem;
+        padding-left: 2.5rem;
         border-radius: 0;
     }
     
     .timeline-stages {
-        min-height: 260px;
-        gap: 0.75rem;
-        padding-bottom: 35px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2.5rem;
+        min-height: auto;
+        padding-bottom: 0;
+        width: 100%;
     }
     
+    /* Вертикальная линия прогресса */
     .timeline-line {
-        bottom: 15px;
+        position: absolute;
+        left: 1rem;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        height: 100%;
+        background: #E2E8F0;
+        border-radius: 2px;
+        right: auto;
+    }
+    
+    .timeline-line-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+        border-radius: 2px;
+        transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .timeline-line-fill.delivered {
+        background: linear-gradient(180deg, #10B981 0%, #059669 100%);
+    }
+    
+    .timeline-line-blocked {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background: #CBD5E1;
+        border-radius: 2px;
+        opacity: 0.3;
+    }
+    
+    /* Этапы */
+    .timeline-stage {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+        padding-bottom: 0;
+        padding-left: 2rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1.5rem;
+        position: relative;
+    }
+    
+    .stage-card {
+        flex: 1;
+        max-width: 100%;
+        margin-bottom: 0;
+        margin-top: 0;
     }
     
     .stage-point {
-        bottom: 15px;
-        width: 16px;
-        height: 16px;
+        position: absolute;
+        left: -1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        bottom: auto;
+    }
+    
+    /* Группы */
+    .development-group,
+    .service-group,
+    .maintenance-group {
+        width: 100%;
+        align-items: stretch;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .development-group-label,
+    .service-group-label,
+    .maintenance-group-label {
+        width: auto;
+        margin-bottom: 0;
+        margin-left: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        order: 1;
+        position: relative;
+        padding-left: 0.5rem;
+        flex-shrink: 0;
+        align-self: flex-start;
+        margin-top: 0.5rem;
+    }
+    
+    .development-stages,
+    .service-stages,
+    .maintenance-stages {
+        flex: 1;
+        order: 0;
+    }
+    
+    .development-label-line,
+    .service-label-line,
+    .maintenance-label-line {
+        width: 3px;
+        height: 60px;
+        flex: none;
+        background: linear-gradient(180deg, transparent 0%, #3B82F6 50%, transparent 100%);
+    }
+    
+    .service-label-line {
+        background: linear-gradient(180deg, transparent 0%, #10B981 50%, transparent 100%);
+    }
+    
+    .maintenance-label-line {
+        background: linear-gradient(180deg, transparent 0%, #8B5CF6 50%, transparent 100%);
+    }
+    
+    .development-label-text,
+    .service-label-text,
+    .maintenance-label-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        padding: 1rem 0.5rem;
+        white-space: nowrap;
+        align-self: flex-start;
+    }
+    
+    .development-stages,
+    .service-stages,
+    .maintenance-stages {
+        flex-direction: column;
+        width: 100%;
+        gap: 2.5rem;
+        align-items: stretch;
+    }
+    
+    /* Переход между месяцами */
+    .service-transition {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        min-width: auto;
+        max-width: 100%;
+        padding: 0;
+        padding-left: 2rem;
+        margin: 0;
+        gap: 1rem;
+        position: relative;
+        min-height: 150px;
     }
     
     .service-transition-line {
-        bottom: 15px;
+        position: absolute;
+        left: -1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, #10B981 0%, rgba(16, 185, 129, 0.3) 50%, #10B981 100%);
+        transform: none;
+    }
+    
+    .service-transition-months {
+        position: absolute;
+        left: -1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: center;
+        padding: 0;
+        z-index: 2;
+    }
+    
+    .transition-month {
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(16, 185, 129, 0.3);
+        width: 22px;
+        height: 22px;
+        font-size: 0.6rem;
+    }
+    
+    /* Gate разделитель */
+    .timeline-stage.gate {
+        width: 100%;
+        min-width: auto;
+        max-width: 100%;
+        padding: 0;
+        padding-left: 2rem;
+        min-height: auto;
+        margin: 0;
+    }
+    
+    .gate-divider {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        min-height: auto;
+        gap: 1.5rem;
     }
     
     .gate-divider-line {
-        bottom: 15px;
+        position: absolute;
+        left: -1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        height: 100%;
+        transform: none;
+        flex-shrink: 0;
     }
     
-    .maintenance-divider-line {
-        bottom: 15px;
+    .gate-divider-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        flex: 1;
     }
     
     .gate-point {
-        bottom: 15px;
+        position: absolute;
+        left: -1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        bottom: auto;
     }
     
-    .timeline-stage {
-        min-width: 120px;
-        padding-bottom: 25px;
+    /* Maintenance разделитель */
+    .timeline-stage.maintenance-divider {
+        width: 100%;
+        min-width: auto;
+        max-width: 100%;
+        padding: 0;
+        padding-left: 2rem;
+        min-height: auto;
+        margin: 0;
+    }
+    
+    .maintenance-divider-line {
+        position: absolute;
+        left: -1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        height: 100%;
+        transform: none;
+        flex-shrink: 0;
+    }
+    
+    .maintenance-divider-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-left: 0;
+        flex: 1;
+    }
+    
+    .maintenance-stages {
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
     }
     
     .service-transition {

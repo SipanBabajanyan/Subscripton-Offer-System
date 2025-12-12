@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             `;
             
-            // Обновляем текст
+            // Update text
             const gateContent = deliveryGate.querySelector('.gate-divider-content');
             const gateText = deliveryGate.querySelector('.gate-text-small');
             const gateSubtitle = deliveryGate.querySelector('.gate-subtitle-small');
             if (gateText) {
-                gateText.textContent = 'Проект сдан ✅';
+                gateText.textContent = 'Project Delivered ✅';
             }
             if (gateSubtitle) {
-                gateSubtitle.textContent = 'Клиент получил проект';
+                gateSubtitle.textContent = 'Client received the project';
             }
             
             // Активируем все этапы обслуживания (4 и 12)
